@@ -2,25 +2,35 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import KeyValueBlock from "./components/KeyValueBlock";
 import Container from "./components/Container";
+import Header from "./components/Header";
 import usePrivacyKey from "./hooks/usePrivacyKey";
 import useSymmetricList from "./hooks/useSymmetricList";
 import useRasList from "./hooks/useRASList";
+import { exportKeys } from "./utils/exportKeys";
 
 function App() {
   const [privacyKey, updatePrivacyKey] = usePrivacyKey();
   const [symmetricList, updateSymmetricList] = useSymmetricList();
   const [rasList, updateRasList] = useRasList();
 
-  const refresh = () => {
+  const handleRefreshKeys = () => {
     updatePrivacyKey();
     updateSymmetricList();
     updateRasList();
   };
 
+  const handleExportKeys = () => {
+    exportKeys(privacyKey, symmetricList, rasList);
+  };
+
   return (
     <>
       <Container>
-        <button onClick={refresh}>Refresh keys</button>
+        <Header
+          onRefreshKeys={handleRefreshKeys}
+          onExportKeys={handleExportKeys}
+        />
+
         {privacyKey && (
           <KeyValueBlock alias="PK" list={[privacyKey]} title="Privacy Key" />
         )}
