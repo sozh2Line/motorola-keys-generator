@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import usePrivacyKey from "./hooks/usePrivacyKey";
 import useSymmetricList from "./hooks/useSymmetricList";
 import useRasList from "./hooks/useRASList";
-import { exportKeys } from "./utils/exportKeys";
+import { exportSymmetricKeys } from "./utils/exportKeys";
 
 function App() {
   const [privacyKey, updatePrivacyKey] = usePrivacyKey();
@@ -19,8 +19,8 @@ function App() {
     updateRasList();
   };
 
-  const handleExportKeys = () => {
-    exportKeys(privacyKey, symmetricList, rasList);
+  const handleExportSymmetricKeys = () => {
+    exportSymmetricKeys(symmetricList);
   };
 
   return (
@@ -28,14 +28,14 @@ function App() {
       <Container>
         <Header
           onRefreshKeys={handleRefreshKeys}
-          onExportKeys={handleExportKeys}
+          onExportKeys={handleExportSymmetricKeys}
         />
 
         {privacyKey && (
           <KeyValueBlock alias="PK" list={[privacyKey]} title="Privacy Key" />
         )}
         {symmetricList?.length && (
-          <KeyValueBlock alias="CH" list={symmetricList} title="Symmetric" />
+          <KeyValueBlock list={symmetricList} title="Symmetric" />
         )}
         {rasList?.length && (
           <KeyValueBlock

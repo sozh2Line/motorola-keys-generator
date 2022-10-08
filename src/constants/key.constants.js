@@ -6,3 +6,5 @@ export const RAS_KEY_QUANTITY = 4;
 export const SYMMETRIC_KEY_QUANTITY = 16;
 export const PRIVACY_KEY_LENGTH = 10;
 export const PRIVACY_KEY_CHARSET = "ABCDEF0123456789";
+export const MAX_KEY_ID_RANGE = 999;
+export const MIN_KEY_ID_RANGE = 10;

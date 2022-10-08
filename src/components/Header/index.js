@@ -7,7 +7,7 @@ export default function Header({ onRefreshKeys, onExportKeys }) {
         Refresh keys
       </button>
       <button className={styles.button} onClick={onExportKeys}>
-        Export keys
+        Export symmetric keys
       </button>
     </div>
   );
